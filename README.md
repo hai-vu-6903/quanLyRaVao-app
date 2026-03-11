@@ -69,7 +69,7 @@ Dự án được thực hiện nhằm:
 
 ---
 
-## 📷 Screenshot
+## Screenshot
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/1ae4a74e-0f02-4061-82db-be5592b9c84c" width="900"/>
@@ -86,3 +86,9 @@ Dự án được thực hiện nhằm:
 <p align="center">
 <img width="1918" height="1017" alt="image" src="https://github.com/user-attachments/assets/22179dc2-b6ad-49f6-8302-a7ce9aa7a345" />
 </p>
+
+## Download
+
+Tải phần mềm tại đây:
+
+[⬇️ Download File EXE](https://github.com/hai-vu-6903/quanLyRaVao-app/releases/tag/v1.0)
