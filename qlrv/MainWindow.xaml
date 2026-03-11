@@ -1,0 +1,205 @@
+﻿<ui:FluentWindow x:Class="qlrv.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        Title="Quản lý ra vào doanh trại"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen">
+    <ui:FluentWindow.Resources>
+
+        <!-- ===== MÀU CHỦ ĐẠO ===== -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#FF1E88E5"/>
+        <SolidColorBrush x:Key="PrimaryHoverBrush" Color="#FF1565C0"/>
+        <SolidColorBrush x:Key="ItemHoverBrush" Color="#331E88E5"/>
+
+        <Style x:Key="FluentButtonStyle"
+       TargetType="Button">
+
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="6">
+                            <ContentPresenter
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <!-- Hover -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd"
+                                Property="Background"
+                                Value="#33FFFFFF"/>
+                            </Trigger>
+
+                            <!-- Pressed -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd"
+                                Property="Background"
+                                Value="#55FFFFFF"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ===== THEME BRUSH ===== -->
+        <SolidColorBrush x:Key="DarkBackgroundBrush" Color="#FF0D47A1"/>
+        <SolidColorBrush x:Key="LightBackgroundBrush" Color="#FFF5F5F5"/>
+
+        <SolidColorBrush x:Key="DarkTextBrush" Color="White"/>
+        <SolidColorBrush x:Key="LightTextBrush" Color="#FF1A1A1A"/>
+
+
+    </ui:FluentWindow.Resources>
+
+
+    <DockPanel LastChildFill="True">
+        <!-- Header -->
+        <Border DockPanel.Dock="Top" Height="50">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#FF1E88E5" Offset="0"/>
+                    <GradientStop Color="#FF1565C0" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Title -->
+                <TextBlock Text="Quản lý ra vào doanh trại"
+                   Foreground="White"
+                   FontSize="16"
+                   FontWeight="SemiBold"
+                   VerticalAlignment="Center"
+                   Margin="16,0"/>
+                
+
+                <!-- Window Buttons -->
+                <StackPanel Grid.Column="1"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Center"
+                    Margin="0,0,8,0">
+
+                    <!-- DATE & TIME HEADER (GIỮ TÊN navDate / navTime) -->
+                    <StackPanel Orientation="Vertical"
+            VerticalAlignment="Center"
+            Margin="0,0,16,0">
+
+                        <!-- GIỜ -->
+                        <ContentControl x:Name="navTime">
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"
+                           Foreground="White"
+                           FontSize="15"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Right"/>
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </ContentControl>
+
+                        <!-- NGÀY -->
+                        <ContentControl x:Name="navDate">
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"
+                           Foreground="#DDFFFFFF"
+                           FontSize="11"
+                           HorizontalAlignment="Right"/>
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </ContentControl>
+
+                    </StackPanel>
+                    
+                    <Button Click="Min_Click" Style="{StaticResource FluentButtonStyle}">
+                        <ui:SymbolIcon Symbol="Subtract24"/>
+                    </Button>
+
+                    <Button Click="Max_Click" Style="{StaticResource FluentButtonStyle}">
+                        <ui:SymbolIcon Symbol="Square24"/>
+                    </Button>
+
+                    <Button Click="Close_Click" Style="{StaticResource FluentButtonStyle}">
+                        <ui:SymbolIcon Symbol="Dismiss24"/>
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+        </Border>
+
+
+        <!-- Footer -->
+        <Border DockPanel.Dock="Bottom"
+        Height="32"
+        Background="#FF0D47A1">
+            <TextBlock Text="© 2026 Doanh Trại Quân Đội"
+               Foreground="#CCFFFFFF"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               FontSize="12"/>
+        </Border>
+
+
+        <!-- Sidebar Fluent -->
+        <ui:NavigationView x:Name="Sidebar"
+                   DockPanel.Dock="Left"
+                   PaneDisplayMode="Left"
+                   Background="#FF0D47A1"
+                   IsPaneOpen="True"
+                   IsBackButtonVisible="Collapsed" 
+                           OpenPaneLength="200">
+
+            <ui:NavigationView.MenuItems>
+
+                <ui:NavigationViewItem Content="Quân nhân" Click="BtnQuanNhan_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="PeopleStar24"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Khách" Click="BtnKhach_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="People24"/>
+                    </ui:NavigationViewItem.Icon>
+
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Lịch sử ra/vào" Click="BtnLichSu_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="History24"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+                <ui:NavigationViewItem Content="Báo cáo – Excel" Click="BtnBaoCao_Click">
+                    <ui:NavigationViewItem.Icon>
+                        <ui:SymbolIcon Symbol="DocumentArrowDown24"/>
+                    </ui:NavigationViewItem.Icon>
+                </ui:NavigationViewItem>
+
+            </ui:NavigationView.MenuItems>
+            
+            
+        </ui:NavigationView>
+
+        <!-- Nội dung chính -->
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+    </DockPanel>
+</ui:FluentWindow>

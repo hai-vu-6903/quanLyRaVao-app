@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="qlrv.Views.ThemSuaQuanNhanView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+    
+    <Grid Margin="20">
+
+        <ui:Card Padding="20">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- ===== TIÊU ĐỀ ===== -->
+                <TextBlock Grid.Row="0"
+                           Text="{Binding Title}"
+                           FontSize="22"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
+
+                <!-- ===== FORM ===== -->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- CỘT 1 -->
+                    <StackPanel Grid.Column="0" Margin="8">
+                        <TextBlock Text="Số CCCD"/>
+                        <TextBox Text="{Binding CCCD, UpdateSourceTrigger=PropertyChanged}"
+                                 LostFocus="CCCD_LostFocus"
+                                 Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Họ tên"/>
+                        <TextBox Text="{Binding HoTen, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Giới tính"/>
+                        <ComboBox ItemsSource="{Binding GioiTinhList}"
+                                  SelectedItem="{Binding GioiTinh}"
+                                  Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Ngày sinh"/>
+                        <DatePicker SelectedDate="{Binding NgaySinh}"
+                                    Margin="0,4,0,12"/>
+                    </StackPanel>
+
+                    <!-- CỘT 2 -->
+                    <StackPanel Grid.Column="1" Margin="8">
+                        <TextBlock Text="Cấp bậc"/>
+                        <TextBox Text="{Binding CapBac, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Chức vụ"/>
+                        <TextBox Text="{Binding ChucVu, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Đơn vị"/>
+                        <TextBox Text="{Binding DonVi, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Quê quán"/>
+                        <TextBox Text="{Binding QueQuan, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,4,0,12"/>
+                    </StackPanel>
+
+                    <!-- CỘT 3 -->
+                    <StackPanel Grid.Column="2" Margin="8">
+                        <TextBlock Text="Loại ra / vào"/>
+                        <ComboBox ItemsSource="{Binding LoaiRaVaoList}"
+                                  SelectedItem="{Binding LoaiRaVao}"
+                                  IsEnabled="{Binding IsLoaiRaVaoEnabled}"
+                                  Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Phương tiện"/>
+                        <ComboBox ItemsSource="{Binding PhuongTienList}"
+                                  SelectedItem="{Binding PhuongTien}"
+                                  Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Biển số"/>
+                        <TextBox Text="{Binding BienSo, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Người trực gác"/>
+                        <TextBox Text="{Binding NguoiTrucGac, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,4,0,12"/>
+
+                        <TextBlock Text="Đơn vị người trực"/>
+                        <TextBox Text="{Binding DonViNguoiTruc, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,4,0,12"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- ===== NÚT ===== -->
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="0,20,0,0">
+
+                    <ui:Button Content="Lưu"
+                               Icon="Save24"
+                               Command="{Binding LuuCommand}"
+                               Width="120"
+                               Margin="8"/>
+
+                    <ui:Button Content="Hủy"
+                               Icon="Dismiss24"
+                               Command="{Binding HuyCommand}"
+                               Width="120"
+                               Margin="8"/>
+                </StackPanel>
+            </Grid>
+        </ui:Card>
+
+    </Grid>
+</UserControl>
